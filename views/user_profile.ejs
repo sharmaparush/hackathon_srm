@@ -1,0 +1,25 @@
+
+    <form action="/analyze" method="POST">
+        <label for="Speech Recognition">Speech Recognition</label>
+    <input type="text" name="rawtext" id="speechToText" placeholder="Speak Something" onclick="record()">
+        <button type="submit">Submit</button>
+    </form>
+
+  
+    <script>
+        function record() {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "en-GB";
+            const print = document.getElementById('speechToText').value;
+            console.log(print);
+            recognition.onresult = function(event) {
+
+                document.getElementById('speechToText').value = event.results[0][0].transcript;
+                const res=document.getElementById('speechToText').value;
+                console.log(res);
+            }
+            recognition.start();
+            console.log(print);
+
+        }
+    </script>
